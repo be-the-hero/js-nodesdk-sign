@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.rawgit.com/dcodeIO/protobuf.js/6.X.X/dist/protobuf.js"></script>
+  <script>
+    protobuf.load("object.proto", function(err, root) {
+    if (err)
+        throw err;
+
+    var _Object = root.lookupType("quorumPb._Object");
+
+    var objectPayload = {
+      id: "1",
+      type: "1",
+      content: "1",
+      name: "1"
+    };
+
+    var errMsg = _Object.verify(objectPayload);
+    if (errMsg)
+        throw Error(errMsg);
+
+
+    var message = _Object.create(objectPayload);
+
+    var unit8ArrayResult = _Object.encode(message).finish();
+
+    var message = _Object.decode(unit8ArrayResult);
+
+    var object = _Object.toObject(message, {
+        longs: String,
+        enums: String,
+        bytes: String,
+    });
+
+    console.log(object);
+    console.log(unit8ArrayResult);
+    console.log(toHex(unit8ArrayResult));
+  });
+  function toHex(array) {
+    return Array.prototype.map.call(array, (x) => ('00' + x.toString(16)).slice(-2));
+  }
+  </script>
+</body>
+</html>

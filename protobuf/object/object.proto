@@ -1,0 +1,9 @@
+package quorumPb;
+syntax = "proto3";
+
+message _Object {
+    string id = 1;
+    string type = 2;
+    string content = 6;
+    string name = 8;
+}

@@ -1,0 +1,29 @@
+package quorum;
+syntax = "proto3";
+
+message _Object {
+    string id = 1;
+    string type = 2;
+    string content = 6;
+    string name = 8;
+}
+
+enum TrxStroageType {
+    CHAIN    = 0;
+    CACHE = 1;
+}
+
+message Trx {
+  string  TrxId        = 1;
+  TrxType Type         = 2;    
+  string  GroupId      = 3;
+  bytes   Data         = 4; 
+  int64   TimeStamp    = 5;
+  string  Version      = 6;
+  int64   Expired      = 7;
+  int64   ResendCount  = 8;
+  int64   Nonce        = 9;
+  string  SenderPubkey = 10;  
+  bytes   SenderSign   = 11;
+  TrxStroageType StorageType = 12;
+}
