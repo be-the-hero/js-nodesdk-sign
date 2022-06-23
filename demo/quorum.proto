@@ -8,6 +8,23 @@ message _Object {
     string name = 8;
 }
 
+enum TrxType {
+  POST               = 0;
+  SCHEMA             = 2;
+  PRODUCER           = 3;
+  ANNOUNCE           = 4;
+  REQ_BLOCK_FORWARD  = 5;
+  REQ_BLOCK_BACKWARD = 6;
+  REQ_BLOCK_RESP     = 7;
+  BLOCK_SYNCED       = 8;
+  BLOCK_PRODUCED     = 9;
+  USER               = 10;
+  ASK_PEERID         = 11;
+  ASK_PEERID_RESP    = 12;
+  CHAIN_CONFIG       = 13;
+  APP_CONFIG         = 14;
+}
+
 enum TrxStroageType {
     CHAIN    = 0;
     CACHE = 1;
